@@ -41,26 +41,27 @@ if __name__ == '__main__':
         win32api.CloseHandle(hProcess)
         exit()
 
+
+    #Get the handles to different modules
+    hModule = win32process.EnumProcessModules(hProcess)[0]
+    print('Base Address: ' + hex(hModule))
+
+
     #Load ReadProcessMemory and WriteProcessMemory
     kernel32 = windll.LoadLibrary('kernel32.dll')
     ReadProcessMemory = kernel32.ReadProcessMemory
     WriteProcessMemory = kernel32.WriteProcessMemory
-
-    #Read Memory
-    nodes_address = 0x07945154
-    nodes_buffer = c_int32(0)
-
-    ReadProcessMemory(
-        int(hProcess),
-        nodes_address,
-        byref(nodes_buffer),
-        4,
-        0)
-
-    print("Nodes: " + str(nodes_buffer.value))
-
     
+    base_addr = hModule
+    offsets = (0xB4578C, 0x8, 0x38, 0xD0, 0x594)
 
+    address = c_uint32(base_addr)
 
+    for offset in offsets:
+        address = c_uint32(address.value + offset)
+        ReadProcessMemory(int(hProcess), address, byref(address), 4, 0)
+        print('Pointer: ' + hex(address.value))
+
+    print(str(address.value))
     #Close Handle
     win32api.CloseHandle(hProcess)
