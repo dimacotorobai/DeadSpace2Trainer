@@ -1,14 +1,8 @@
-from win32 import win32api
-from win32 import win32gui
-from win32 import win32process
+from win32 import win32api, win32gui, win32process
 import win32.lib.win32con as win32con
 import psutil
 from ctypes import *
-
-#Read and Write Memory Functions
-kernel32 = windll.LoadLibrary('kernel32.dll')
-ReadProcessMemory  = kernel32.ReadProcessMemory
-WriteProcessMemory = kernel32.WriteProcessMemory
+from kernel32 import *
 
 class Process:
     #Constructor Definition
