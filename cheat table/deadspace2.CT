@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"Nodes"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"Node Pointer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01C4DC14</Address>
+          <Offsets>
+            <Offset>39C</Offset>
+            <Offset>80</Offset>
+            <Offset>98</Offset>
+            <Offset>140</Offset>
+            <Offset>74</Offset>
+            <Offset>C</Offset>
+            <Offset>D8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"Node Pointer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01CB793C</Address>
+          <Offsets>
+            <Offset>42C</Offset>
+            <Offset>14</Offset>
+            <Offset>5C</Offset>
+            <Offset>48</Offset>
+            <Offset>0</Offset>
+            <Offset>18</Offset>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"Node Pointer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01CAB040</Address>
+          <Offsets>
+            <Offset>42C</Offset>
+            <Offset>58</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"Credits"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"Credit Pointer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01C4DC00</Address>
+          <Offsets>
+            <Offset>BA0</Offset>
+            <Offset>8</Offset>
+            <Offset>8</Offset>
+            <Offset>30</Offset>
+            <Offset>5C</Offset>
+            <Offset>C</Offset>
+            <Offset>84</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Credit Pointer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01C4DC14</Address>
+          <Offsets>
+            <Offset>BA0</Offset>
+            <Offset>8</Offset>
+            <Offset>8</Offset>
+            <Offset>320</Offset>
+            <Offset>5C</Offset>
+            <Offset>2C</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"Credit Pointer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01CAB044</Address>
+          <Offsets>
+            <Offset>BDC</Offset>
+            <Offset>18</Offset>
+            <Offset>1C</Offset>
+            <Offset>160</Offset>
+            <Offset>4</Offset>
+            <Offset>48</Offset>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"pointerscan result"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01CA4610</Address>
+          <Offsets>
+            <Offset>BF8</Offset>
+            <Offset>270</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"pointerscan result"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01CA4610</Address>
+          <Offsets>
+            <Offset>BF8</Offset>
+            <Offset>270</Offset>
+            <Offset>1CC</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"pointerscan result"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"deadspace2.exe"+01CAB040</Address>
+          <Offsets>
+            <Offset>BF8</Offset>
+            <Offset>0</Offset>
+            <Offset>50</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"Decremement Ammo Address"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>6</ByteLength>
+      <Address>"deadspace2.exe" + 9baf57</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Menu access credits</Description>
+      <AddressString>deadspace2.exe+49014A</AddressString>
+      <Before>
+        <Byte>C4</Byte>
+        <Byte>1C</Byte>
+        <Byte>8B</Byte>
+        <Byte>46</Byte>
+        <Byte>50</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>88</Byte>
+        <Byte>F8</Byte>
+        <Byte>0B</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>6A</Byte>
+        <Byte>01</Byte>
+        <Byte>8D</Byte>
+        <Byte>54</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Menu access nodes</Description>
+      <AddressString>deadspace2.exe+4A7930</AddressString>
+      <Before>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>81</Byte>
+        <Byte>2C</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Move Ammo</Description>
+      <AddressString>deadspace2.exe+9BAF57</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>29</Byte>
+        <Byte>10</Byte>
+        <Byte>23</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>AE</Byte>
+        <Byte>9C</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>0A</Byte>
+        <Byte>C7</Byte>
+        <Byte>86</Byte>
+        <Byte>9C</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>"deadspace2.exe"+49014A</Address>
+      <Comment>Menu access for credits function
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
+</CheatTable>
