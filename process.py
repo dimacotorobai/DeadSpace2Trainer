@@ -43,9 +43,8 @@ class Process:
         self.__hModule = win32process.EnumProcessModules(self.__hProcess)[0]
     
     #Destructor Definition
-    def __del__(self):
+    def CloseProcess(self):
         win32api.CloseHandle(self.__hProcess)
-        print('Destructor Called')
 
     #Print Process Information    
     def PrintProcessInfo(self) -> None:
