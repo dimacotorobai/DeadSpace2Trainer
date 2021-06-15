@@ -5,7 +5,7 @@
       <ID>19</ID>
       <Description>"Nodes"</Description>
       <Options moHideChildren="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
@@ -54,7 +54,7 @@
       <ID>20</ID>
       <Description>"Credits"</Description>
       <Options moHideChildren="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
@@ -143,7 +143,15 @@
       <ShowAsHex>1</ShowAsHex>
       <VariableType>Array of byte</VariableType>
       <ByteLength>6</ByteLength>
-      <Address>"deadspace2.exe" + 9baf57</Address>
+      <Address>"deadspace2.exe" + 0x009BAF57</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"Air Decremement Address"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Array of byte</VariableType>
+      <ByteLength>5</ByteLength>
+      <Address>"deadspace2.exe" + 0x496916</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
@@ -199,7 +207,7 @@
         <Byte>CC</Byte>
       </After>
     </CodeEntry>
-    <CodeEntry Color="80000008">
+    <CodeEntry Color="20000000">
       <Description>Move Ammo</Description>
       <AddressString>deadspace2.exe+9BAF57</AddressString>
       <Before>
@@ -223,6 +231,31 @@
         <Byte>C7</Byte>
         <Byte>86</Byte>
         <Byte>9C</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Air Decrememnt Function</Description>
+      <AddressString>deadspace2.exe+496916</AddressString>
+      <Before>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5C</Byte>
+        <Byte>46</Byte>
+        <Byte>58</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>46</Byte>
+        <Byte>74</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>5F</Byte>
+        <Byte>A8</Byte>
+        <Byte>02</Byte>
+        <Byte>74</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
