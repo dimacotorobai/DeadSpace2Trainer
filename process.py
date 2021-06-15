@@ -40,11 +40,17 @@ class Process:
     def CloseProcess(self):
         win32api.CloseHandle(self.__hProcess)
 
+    #Get Base Address of Module
+    def GetBaseAddress(self) -> int:
+        return int(self.__hModule)
+
     #Print Process Information    
     def PrintProcessInfo(self) -> None:
         print('Window Name : ' + win32gui.GetWindowText(self.__hWnd))
         print('Process Name: ' + psutil.Process(self.__process_id).name())
         print('Process ID  : ' + str(self.__process_id))
+        print('Thread ID   : ' + str(self.__thread_id))
+        print()
 
     #Find Dynamic Address
     def FindDynamicAddress(self, offsets: tuple) -> int:
@@ -67,6 +73,14 @@ class Process:
         value_buffer = c_int32(value)
         WriteProcessMemory(int(self.__hProcess), address, byref(value_buffer), 4, 0)
         return None
+    
+    #Patch Memory Externaly
+    def PatchMemory(self, src: tuple, dst: int, size: int):
+        oldProtect = c_uint32(0)
+        arr = (c_ubyte *len(src))(*src)
+        VirtualProtectEx(int(self.__hProcess), dst, size, win32con.PAGE_EXECUTE_READWRITE, byref(oldProtect))
+        WriteProcessMemory(int(self.__hProcess), dst, arr, size, 0)
+        VirtualProtectEx(int(self.__hProcess), dst, size, oldProtect, byref(oldProtect))
 
 
 

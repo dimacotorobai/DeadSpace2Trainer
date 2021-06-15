@@ -1,4 +1,5 @@
 from ctypes import windll
+from ctypes import wintypes
 
 #Import DLL
 kernel32 = windll.LoadLibrary('kernel32.dll')
