@@ -82,5 +82,10 @@ class Process:
         WriteProcessMemory(int(self.__hProcess), dst, arr, size, 0)
         VirtualProtectEx(int(self.__hProcess), dst, size, oldProtect, byref(oldProtect))
 
+    #Allocate Memory within Process
+    def AllocMemory(self, address: int, size: int) -> int:
+        addr = VirtualAllocEx(int(self.__hProcess), address, size, win32con.MEM_COMMIT, win32con.PAGE_EXECUTE_READWRITE)
+        print('VirtualAllocEx: ' + hex(addr))
+        return addr
 
 

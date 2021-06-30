@@ -7,6 +7,7 @@ class DeadSpace:
     credit_offsets: tuple = (0x00B4578C, 0x8, 0x38, 0x18, 0x370, 0x5C)
     health_offsets: tuple = (0x00B4578C, 0x278, 0x38, 0x3E0)
 
+
     #Godmode
     godmode_offset: int = 0x5D1DD
     gotmode_size: int   = 8
@@ -37,8 +38,9 @@ class DeadSpace2:
     windowName: str = 'Dead Space™ 2'
 
     #Credits and Nodes
-    node_offsets: tuple    = (0x01CAB040, 0x58, 0x42C)
-    credit_offsets: tuple  = (0x01CA4610, 0x270, 0xBF8)
+    node_offsets:   tuple = (0x01CAB040, 0x58, 0x42C)
+    credit_offsets: tuple = (0x01CA4610, 0x270, 0xBF8)
+    health_offsets: tuple = (0x01C4D554, 0x18, 0x2C, 0xC, 0xE8)
 
     #Godmode
     godmode_offset: int = 0xB84D5C
