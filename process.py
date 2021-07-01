@@ -88,4 +88,9 @@ class Process:
         print('VirtualAllocEx: ' + hex(addr))
         return addr
 
+    #Free Allocated Memory
+    def FreeMemory(self, address:int, size: int) -> int:
+        bResult = VirtualFreeEx(int(self.__hProcess), address, size, win32con.MEM_DECOMMIT)
+        return bResult
+
 

@@ -8,7 +8,7 @@ kernel32 = windll.LoadLibrary('kernel32.dll')
 ReadProcessMemory  = kernel32.ReadProcessMemory
 WriteProcessMemory = kernel32.WriteProcessMemory
 
-#Virtual Protect, Alloc
+#Virtual Protect, Alloc, Free
 VirtualProtectEx = kernel32.VirtualProtectEx
 VirtualAllocEx   = kernel32.VirtualAllocEx
 VirtualFreeEx    = kernel32.VirtualFreeEx
