@@ -188,28 +188,21 @@ class Window:
     #Constant Write to Nodes and Credits
     def Nodes_Check(self):
         if(self.var_nodes.get() == 1):
-            self.window.title('Nodes Checked')
-
             nodes_addr = self.pDeadSpace.FindDynamicAddress(DeadSpace2.node_offsets)
             nodes_value = int(self.tb_nodes.get())
             self.pDeadSpace.WriteMemory(nodes_addr, nodes_value)
 
             self.window.after(1000, self.Nodes_Check)
-        else:
-            self.window.title('Nodes Unchecked')
+
 
 
     def Credits_Check(self):
         if(self.var_credits.get() == 1):
-            self.window.title('Credits Checked')
-
             credit_addr = self.pDeadSpace.FindDynamicAddress(DeadSpace2.credit_offsets)
             credit_value = int(self.tb_credits.get())
             self.pDeadSpace.WriteMemory(credit_addr, credit_value)
 
             self.window.after(1000, self.Credits_Check)
-        else:
-            self.window.title('Credits Unchecked')
 
     #Get/Set Nodes and Credits
     def GetNodes(self):
