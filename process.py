@@ -46,11 +46,12 @@ class Process:
 
     #Print Process Information    
     def PrintProcessInfo(self) -> None:
-        print('Window Name : ' + win32gui.GetWindowText(self.__hWnd))
-        print('Process Name: ' + psutil.Process(self.__process_id).name())
-        print('Process ID  : ' + str(self.__process_id))
-        print('Thread ID   : ' + str(self.__thread_id))
-        print()
+        #print('Window Name : ' + win32gui.GetWindowText(self.__hWnd))
+        #print('Process Name: ' + psutil.Process(self.__process_id).name())
+        #print('Process ID  : ' + str(self.__process_id))
+        #print('Thread ID   : ' + str(self.__thread_id))
+        #print()
+        return (win32gui.GetWindowText(self.__hWnd), psutil.Process(self.__process_id).name(), str(self.__process_id), str(self.__thread_id))
 
     #Find Dynamic Address
     def FindDynamicAddress(self, offsets: tuple) -> int:
@@ -85,7 +86,7 @@ class Process:
     #Allocate Memory within Process
     def AllocMemory(self, address: int, size: int) -> int:
         addr = VirtualAllocEx(int(self.__hProcess), address, size, win32con.MEM_COMMIT, win32con.PAGE_EXECUTE_READWRITE)
-        print('VirtualAllocEx: ' + hex(addr))
+        #print('VirtualAllocEx: ' + hex(addr))
         return addr
 
     #Free Allocated Memory

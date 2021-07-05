@@ -3,7 +3,7 @@ from win32 import win32api              #Get Keys presses
 import win32.lib.win32con as win32con   #Win macros
 import time                             #Import for sleep thread
 from offsets import DeadSpace, DeadSpace2
-import tki
+from window import Window
 
 #Global Variables
 bGodmodeOn  = False
@@ -30,6 +30,18 @@ if __name__ == '__main__':
     #Fine Process and Print Info
     pDeadspace = Process(DeadSpace2.windowName)
     pDeadspace.PrintProcessInfo()
+
+    #Create Window
+    window = Window(pDeadspace)
+    window.DrawUI()
+    window.MainLoop()
+
+    #Release Process
+    pDeadspace.CloseProcess()
+
+    exit(code=0)
+
+    #Dont Below is the code for the Console Version of the Hack 
 
     #Print Menu
     print('\nDead Space 2 Trainer\n')
