@@ -58,9 +58,9 @@ class Window:
         self.proc_info_frame.grid(columnspan=2, padx=10, pady = 10)
         self.proc_info_frame.grid_propagate(0)
 
-        Label(self.proc_info_frame, text='                                      ', bg = '#d3d3d3', height=0).grid(row = 4, column = 0)
-        Label(self.proc_info_frame, text='                                      ', bg = '#d3d3d3', height=0).grid(row = 4, column = 1)
-        Label(self.proc_info_frame, text='                                      ', bg = '#d3d3d3', height=0).grid(row = 4, column = 2)
+        Label(self.proc_info_frame, text='                              ', bg = '#d3d3d3', height=0).grid(row = 4, column = 0)
+        Label(self.proc_info_frame, text='                              ', bg = '#d3d3d3', height=0).grid(row = 4, column = 1)
+        Label(self.proc_info_frame, text='                              ', bg = '#d3d3d3', height=0).grid(row = 4, column = 2)
 
         proc_info = self.pDeadSpace.PrintProcessInfo() #Process Info
 
@@ -142,7 +142,7 @@ class Window:
     def Godmode_Check(self):
         base_address = self.pDeadSpace.GetBaseAddress()
         godmode_array[3:7] = list(base_address.to_bytes(4, 'little'))
-        godmode_array[50:54] = list((base_address + DeadSpace2.godmode_offset + DeadSpace2.godmode_size).to_bytes(4, 'little'))
+        godmode_array[75:79] = list((base_address + DeadSpace2.godmode_offset + DeadSpace2.godmode_size).to_bytes(4, 'little'))
 
         if(self.var_godmode.get() == 1):
             #Allocate Memory
@@ -156,9 +156,16 @@ class Window:
             #Patch Current Mem
             self.pDeadSpace.PatchMemory(DeadSpace2.godmode_on, base_address + DeadSpace2.godmode_offset, DeadSpace2.godmode_size)
             self.pDeadSpace.PatchMemory(jmp_shellcode, base_address + DeadSpace2.godmode_offset, len(jmp_shellcode))
+
+            #Patch Display Value
+            self.pDeadSpace.PatchMemory(DeadSpace2.godmode_display_on, base_address+DeadSpace2.godmode_display_offset, DeadSpace2.godmode_display_size)
+
         else:
             #Unpatch jmp instruction
             self.pDeadSpace.PatchMemory(DeadSpace2.godmode_off, base_address + DeadSpace2.godmode_offset, DeadSpace2.godmode_size)
+
+            #Unpatch Display
+            self.pDeadSpace.PatchMemory(DeadSpace2.godmode_display_off, base_address+DeadSpace2.godmode_display_offset, DeadSpace2.godmode_display_size)
 
             #Deallocate Memory
             self.pDeadSpace.FreeMemory(self.godmode_alloc, len(godmode_array))
