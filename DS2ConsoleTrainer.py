@@ -2,7 +2,7 @@ from src.process import Process             # Process management class
 from src.offsets import DeadSpace2          # DeadSpace2 Offsets class
 from win32 import win32api                  # Get Keys presses
 import win32.lib.win32con as win32con       # Win macros
-import time                                 # Import for sleep thread
+import time, os                             
 
 #Global Variables
 bGodmodeOn  = False
@@ -25,13 +25,14 @@ godmode_array = [0x50, 0x53, 0xB8, 0x99, 0x99, 0x99, 0x99,
 
 #Define a main entry point(Optional)
 if __name__ == '__main__':
-
     #Fine Process and Print Info
     pDeadspace = Process(DeadSpace2.windowName)
-    pDeadspace.PrintProcessInfo()
+
+    # Clear console text
+    os.system('cls')
 
     #Print Menu
-    print('\nDead Space 2 Trainer\n')
+    print('Dead Space 2 Trainer\n')
     print('[F1] for Godmode')
     print('[F2] for Infinite Ammo')
     print('[F3] for Infinite Stasis')
