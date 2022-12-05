@@ -1,8 +1,8 @@
-from src.process import Process             # Process management class
-from src.offsets import DeadSpace2          # DeadSpace2 Offsets class
-from win32 import win32api                  # Get Keys presses
+import time, os
 import win32.lib.win32con as win32con       # Win macros
-import time, os                             
+from win32 import win32api                  # Get Keys presses
+from src.process import Process             # Process management class
+from src.offsets import DeadSpace2          # DeadSpace2 Offsets class                    
 
 #Global Variables
 bGodmodeOn  = False
@@ -44,7 +44,6 @@ if __name__ == '__main__':
     while True:
         #Godmode
         if win32api.GetAsyncKeyState(win32con.VK_F1):
-            print("Pressed [F1]")
             base_address = pDeadspace.GetBaseAddress()
             godmode_array[3:7] = list(base_address.to_bytes(4, 'little'))
             godmode_array[50:54] = list((base_address + DeadSpace2.godmode_offset + DeadSpace2.godmode_size).to_bytes(4, 'little'))
@@ -70,7 +69,6 @@ if __name__ == '__main__':
 
         #Ammo On
         if win32api.GetAsyncKeyState(win32con.VK_F2):
-            print("Pressed [F2]")
             base_address = pDeadspace.GetBaseAddress()
             bAmmoOn = not(bAmmoOn)
             if bAmmoOn:
@@ -80,7 +78,6 @@ if __name__ == '__main__':
 
         #Stasis On
         if win32api.GetAsyncKeyState(win32con.VK_F3):
-            print("Pressed [F3]")
             base_address = pDeadspace.GetBaseAddress()
             bStasisOn = not(bStasisOn)
             if bStasisOn:
@@ -90,7 +87,6 @@ if __name__ == '__main__':
 
         #Air On
         if win32api.GetAsyncKeyState(win32con.VK_F4):
-            print("Pressed [F4]")
             base_address = pDeadspace.GetBaseAddress()
             bAirOn = not(bAirOn)
             if bAirOn:
@@ -100,25 +96,22 @@ if __name__ == '__main__':
 
         #Give Credits
         if win32api.GetAsyncKeyState(win32con.VK_F5):
-            print("Pressed [F5]")
             credit_addr = pDeadspace.FindDynamicAddress(DeadSpace2.credit_offsets)
             credit_value = pDeadspace.ReadMemory(credit_addr)
             pDeadspace.WriteMemory(credit_addr, credit_value + 500)
 
         #Give Nodes
         if win32api.GetAsyncKeyState(win32con.VK_F6):
-            print("Pressed [F6]")
             node_addr = pDeadspace.FindDynamicAddress(DeadSpace2.node_offsets)
             node_value = pDeadspace.ReadMemory(node_addr)
             pDeadspace.WriteMemory(node_addr, node_value + 1)
 
         #Close Trainer
         if win32api.GetAsyncKeyState(win32con.VK_F7):
-            print("Pressed [F7]")
             break
         
         #Put Thread to Sleep
-        time.sleep(0.25)
+        time.sleep(0.50)
 
     #Close Process Handle    
     pDeadspace.CloseProcess()

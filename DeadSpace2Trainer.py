@@ -4,6 +4,7 @@ from src.window import Window       # Window Gui class
 
 
 if __name__ == '__main__':
+    # Create Process Manager
     pDeadspace = Process(DeadSpace2.windowName)
 
     #Create Window
@@ -13,5 +14,3 @@ if __name__ == '__main__':
 
     #Release Process
     pDeadspace.CloseProcess()
-
-    exit(code=0)
