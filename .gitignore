@@ -1,3 +1,7 @@
 # Ignore Folders
-venv
 __pycache__
+venv
+build
+dist
+.vscode
+DeadSpace2Trainer.spec

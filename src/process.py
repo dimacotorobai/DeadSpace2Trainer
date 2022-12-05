@@ -2,7 +2,7 @@ import psutil
 import win32.lib.win32con as win32con
 from win32 import win32api, win32gui, win32process
 from ctypes import *
-from src.kernel32 import *
+from kernel32 import *
 
 class Process:
     #Constructor Definition
@@ -45,12 +45,7 @@ class Process:
         return int(self.__hModule)
 
     #Print Process Information    
-    def PrintProcessInfo(self) -> tuple:
-        #print('Window Name : ' + win32gui.GetWindowText(self.__hWnd))
-        #print('Process Name: ' + psutil.Process(self.__process_id).name())
-        #print('Process ID  : ' + str(self.__process_id))
-        #print('Thread ID   : ' + str(self.__thread_id))
-        #print()
+    def GetProcessInfo(self) -> tuple:
         return (win32gui.GetWindowText(self.__hWnd), psutil.Process(self.__process_id).name(), str(self.__process_id), str(self.__thread_id))
 
     #Find Dynamic Address
@@ -93,5 +88,3 @@ class Process:
     def FreeMemory(self, address:int, size: int) -> int:
         bResult = VirtualFreeEx(int(self.__hProcess), address, size, win32con.MEM_DECOMMIT)
         return bResult
-
-

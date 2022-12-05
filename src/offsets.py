@@ -7,7 +7,6 @@ class DeadSpace:
     credit_offsets: tuple = (0x00B4578C, 0x8, 0x38, 0x18, 0x370, 0x5C)
     health_offsets: tuple = (0x00B4578C, 0x278, 0x38, 0x3E0)
 
-
     #Godmode
     godmode_offset: int = 0x5D1DD
     gotmode_size: int   = 8
@@ -71,5 +70,3 @@ class DeadSpace2:
     air_size: int   = 5
     air_on: tuple   = (0x90, 0x90, 0x90, 0x90, 0x90)
     air_off: tuple  = (0xF3, 0x0F, 0x11, 0x46, 0x74)
-
-    

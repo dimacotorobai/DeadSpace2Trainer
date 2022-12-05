@@ -1,18 +1,18 @@
+from process import Process
+from offsets import DeadSpace2
+from shellcode import *
 from tkinter import *
-from src.process import Process
-from src.offsets import DeadSpace2
-from src.shellcode import *
 
 class Window:
     def __init__(self, pDeadSpace: Process):
         #Create Window
         self.window = Tk()
-        self.window.title('Dead Space™ 2 Hack v1.0')
+        self.window.title('Dead Space™ 2 Hack')
         self.window.geometry('400x500')
         self.window.configure(bg='#d3d3d3')
         self.window.minsize(400, 500)
         self.window.maxsize(400, 500)
-        self.window.grid_propagate(0)
+        self.window.grid_propagate(False)
         self.window.protocol('WM_DELETE_WINDOW', self.__quit__)
 
         #Create Variables
@@ -48,21 +48,19 @@ class Window:
         self.Credits_Check()
 
         self.window.destroy()
-        pass
-
 
     def DrawUI(self):
         #Info Frame
         self.proc_info_frame = LabelFrame(self.window, text='Process Information', width = 380, height = 150, padx=10, pady = 10)
         self.proc_info_frame.configure(bg='#d3d3d3', font = ("TkDefaultFont", 10))
         self.proc_info_frame.grid(columnspan=2, padx=10, pady = 10)
-        self.proc_info_frame.grid_propagate(0)
+        self.proc_info_frame.grid_propagate(False)
 
         Label(self.proc_info_frame, text='                              ', bg = '#d3d3d3', height=0).grid(row = 4, column = 0)
         Label(self.proc_info_frame, text='                              ', bg = '#d3d3d3', height=0).grid(row = 4, column = 1)
         Label(self.proc_info_frame, text='                              ', bg = '#d3d3d3', height=0).grid(row = 4, column = 2)
 
-        proc_info = self.pDeadSpace.PrintProcessInfo() #Process Info
+        proc_info = self.pDeadSpace.GetProcessInfo() #Process Info
 
         self.window_name = Label(self.proc_info_frame, text='Window Name: ' + proc_info[0], bg='#d3d3d3')
         self.window_name.grid(row = 0, column = 0, sticky = "W")
@@ -81,7 +79,7 @@ class Window:
         self.cheat_frame = LabelFrame(self.window, text='Cheat', padx=-10, pady=1, width = 190, height = 300)
         self.cheat_frame.configure(bg='#d3d3d3', font = ("TkDefaultFont", 10))
         self.cheat_frame.grid(row = 2, column = 0)
-        self.cheat_frame.grid_propagate(0)
+        self.cheat_frame.grid_propagate(False)
 
         Label(self.cheat_frame, text='             ', bg = '#d3d3d3').grid(row = 0, column = 0)
         Label(self.cheat_frame, text='                ', bg = '#d3d3d3').grid(row = 0, column = 1)
@@ -99,12 +97,11 @@ class Window:
         self.infair_cb = Checkbutton(self.cheat_frame, text='Infinite Air', bg='#d3d3d3', height = 2, variable = self.var_air, command = self.Air_Check, onvalue = 1, offvalue = 0)
         self.infair_cb.grid(row = 4, column = 1, sticky = "W")
 
-
         #Misc Frame
         self.misc_frame = LabelFrame(self.window, text='Misc', padx=1, pady=1,width = 190, height = 300)
         self.misc_frame.configure(bg='#d3d3d3', font = ("TkDefaultFont", 10))
         self.misc_frame.grid(row = 2, column = 1)
-        self.misc_frame.grid_propagate(0)
+        self.misc_frame.grid_propagate(False)
 
         Label(self.misc_frame, text='             ', bg = '#d3d3d3').grid(row = 0, column = 0)
         Label(self.misc_frame, text='             ', bg = '#d3d3d3').grid(row = 0, column = 1)
@@ -144,10 +141,10 @@ class Window:
         godmode_array[3:7] = list(base_address.to_bytes(4, 'little'))
         godmode_array[75:79] = list((base_address + DeadSpace2.godmode_offset + DeadSpace2.godmode_size).to_bytes(4, 'little'))
 
-        if(self.var_godmode.get() == 1):
+        if self.var_godmode.get() == 1:
             #Allocate Memory
             self.godmode_alloc = self.pDeadSpace.AllocMemory(0, len(godmode_array))
-            self.pDeadSpace.PatchMemory(godmode_array, self.godmode_alloc, len(godmode_array))
+            self.pDeadSpace.PatchMemory(tuple(godmode_array), self.godmode_alloc, len(godmode_array))
 
             #Calculate Relative
             relative_address = self.godmode_alloc - (base_address + DeadSpace2.godmode_offset + 5)
@@ -170,41 +167,38 @@ class Window:
             #Deallocate Memory
             self.pDeadSpace.FreeMemory(self.godmode_alloc, len(godmode_array))
 
-
     def Ammo_Check(self):
         base_address = self.pDeadSpace.GetBaseAddress()
-        if(self.var_ammo.get() == 1):
+        if self.var_ammo.get() == 1:
             self.pDeadSpace.PatchMemory(DeadSpace2.ammo_on, base_address + DeadSpace2.ammo_offset, DeadSpace2.ammo_size)
         else:
             self.pDeadSpace.PatchMemory(DeadSpace2.ammo_off, base_address + DeadSpace2.ammo_offset, DeadSpace2.ammo_size)
 
     def Stasis_Check(self):
         base_address = self.pDeadSpace.GetBaseAddress()
-        if(self.var_stasis.get() == 1):
+        if self.var_stasis.get() == 1:
             self.pDeadSpace.PatchMemory(DeadSpace2.stasis_on, base_address + DeadSpace2.stasis_offset, DeadSpace2.stasis_size)
         else:
             self.pDeadSpace.PatchMemory(DeadSpace2.stasis_off, base_address + DeadSpace2.stasis_offset, DeadSpace2.stasis_size)
 
     def Air_Check(self):
         base_address = self.pDeadSpace.GetBaseAddress()
-        if(self.var_air.get() == 1):
+        if self.var_air.get() == 1:
             self.pDeadSpace.PatchMemory(DeadSpace2.air_on, base_address + DeadSpace2.air_offset, DeadSpace2.air_size)
         else:
             self.pDeadSpace.PatchMemory(DeadSpace2.air_off, base_address + DeadSpace2.air_offset, DeadSpace2.air_size)
 
     #Constant Write to Nodes and Credits
     def Nodes_Check(self):
-        if(self.var_nodes.get() == 1):
+        if self.var_nodes.get() == 1:
             nodes_addr = self.pDeadSpace.FindDynamicAddress(DeadSpace2.node_offsets)
             nodes_value = int(self.tb_nodes.get())
             self.pDeadSpace.WriteMemory(nodes_addr, nodes_value)
 
             self.window.after(1000, self.Nodes_Check)
 
-
-
     def Credits_Check(self):
-        if(self.var_credits.get() == 1):
+        if self.var_credits.get() == 1:
             credit_addr = self.pDeadSpace.FindDynamicAddress(DeadSpace2.credit_offsets)
             credit_value = int(self.tb_credits.get())
             self.pDeadSpace.WriteMemory(credit_addr, credit_value)
@@ -231,5 +225,3 @@ class Window:
         credit_addr = self.pDeadSpace.FindDynamicAddress(DeadSpace2.credit_offsets)
         credit_value = int(self.tb_credits.get())
         self.pDeadSpace.WriteMemory(credit_addr, credit_value)
-
-        
